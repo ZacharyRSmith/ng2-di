@@ -6,10 +6,15 @@ import { Logger } from '../logger.service';
 
 @Injectable()
 export class HeroService {
-  constructor(@Optional() private logger:Logger) { }
+  constructor(
+    @Optional() private logger:Logger,
+    private isAuthorized:boolean) { }
 
   getHeroes() {
+    let auth = this.isAuthorized ? 'authorized' : 'unauthroized';
+
     if (this.logger) this.logger.log('Getting heroes...');
-    return HEROES;
+
+    return HEROES.filter(hero => this.isAuthorized || !hero.isSecret);
   }
 }

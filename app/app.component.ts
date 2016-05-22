@@ -1,8 +1,9 @@
 import { Component, provide } from '@angular/core';
 
+import { BetterLogger } from './better-logger.service';
 import { HeroesComponent } from './heroes/heroes.component';
 import { Logger } from './logger.service';
-import { BetterLogger } from './better-logger.service';
+import { UserService } from './user.service';
 
 @Component({
     selector: 'my-app',
@@ -10,6 +11,9 @@ import { BetterLogger } from './better-logger.service';
       <my-heroes></my-heroes>
     `,
     directives: [HeroesComponent],
-    providers: [provide(Logger, { useClass: BetterLogger }]
+    providers: [
+      UserService,
+      provide(Logger, { useClass: BetterLogger }
+    ]
 })
 export class AppComponent { }
