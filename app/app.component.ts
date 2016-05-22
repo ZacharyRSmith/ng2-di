@@ -1,7 +1,14 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
+
+import { HeroesComponent } from './heroes/heroes.component';
+import { Logger } from './logger.service';
 
 @Component({
     selector: 'my-app',
-    template: '<h1>My First Angular 2 App</h1>'
+    template: `
+      <my-heroes></my-heroes>
+    `,
+    directives: [HeroesComponent],
+    providers: [Logger]
 })
 export class AppComponent { }
